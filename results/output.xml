@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0 (Python 3.12.1 on win32)" generated="2024-02-07T17:35:37.805267" rpa="false" schemaversion="5">
+<suite id="s1" name="Selenium" source="C:\Users\Vitor\Desktop\Hora de Codar\Selenium">
+<suite id="s1-s1" name="Saucedemo" source="C:\Users\Vitor\Desktop\Hora de Codar\Selenium\saucedemo.robot">
+<test id="s1-s1-t1" name="TC002 - Realizar login com usuário bloqueado2" line="99">
+<kw name="Run Keywords" owner="BuiltIn" type="SETUP">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2024-02-07T17:35:37.950300" level="INFO">Opening browser 'chrome' to base url 'http://sistemas.t2mlab.com:3008'.</msg>
+<arg>url=${URL}</arg>
+<arg>browser=${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2024-02-07T17:35:37.950300" elapsed="1.405324"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2024-02-07T17:35:39.355624" elapsed="0.120027"/>
+</kw>
+<arg>Open Browser</arg>
+<arg>url=${URL}</arg>
+<arg>browser=${BROWSER}</arg>
+<arg>AND</arg>
+<arg>Maximize Browser Window</arg>
+<doc>Executes all the given keywords in a sequence.</doc>
+<status status="PASS" start="2024-02-07T17:35:37.950300" elapsed="1.525351"/>
+</kw>
+<kw name="Realizar login com ${USUARIO_VALIDO} e ${SENHA.INVALIDA}" source_name="Realizar login com ${username} e ${password}">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-02-07T17:35:39.477651" level="INFO">Typing text 'BNViana' into text field 'id:formBasicEmail'.</msg>
+<arg>${LOGIN_PAGE.UsernameInput}</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-07T17:35:39.477651" elapsed="0.059014"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-02-07T17:35:39.537665" level="INFO">Typing text '1234' into text field 'id:formBasicPassword'.</msg>
+<arg>${LOGIN_PAGE.PassowordInput}</arg>
+<arg>${password}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-07T17:35:39.536665" elapsed="0.043009"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-02-07T17:35:39.580674" level="INFO">Clicking element 'xpath://*[@id="root"]/div[1]/div/div[2]/div[3]/div/div/form/div[3]/div/div/button/span'.</msg>
+<arg>${LOGIN_PAGE.LoginButton}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-07T17:35:39.579674" elapsed="0.028006"/>
+</kw>
+<status status="PASS" start="2024-02-07T17:35:39.476651" elapsed="0.131029"/>
+</kw>
+<kw name="Verificar se não foi possivel realizar o login com senha" source_name="Verificar se não foi possivel realizar o login com ${texto}">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${LOGIN_PAGE.UsernameInput}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-02-07T17:35:39.608705" elapsed="0.011978"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${LOGIN_PAGE.ErrorMessage}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-02-07T17:35:39.620683" elapsed="0.638144"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-02-07T17:35:40.271830" level="INFO">${mensagem_obtida} = Erro ao realizar o login - Senha incorreta</msg>
+<var>${mensagem_obtida}</var>
+<arg>locator=${LOGIN_PAGE.ErrorMessage}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-07T17:35:40.258827" elapsed="0.013003"/>
+</kw>
+<if>
+<branch type="IF" condition="&quot;${texto}&quot; == &quot;email&quot;">
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${mensagem_obtida}</arg>
+<arg>${mensagem_email_incorreto}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" start="2024-02-07T17:35:40.272830" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2024-02-07T17:35:40.272830" elapsed="0.000000"/>
+</branch>
+<branch type="ELSE IF" condition="&quot;${texto}&quot; == &quot;senha&quot;">
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${mensagem_obtida}</arg>
+<arg>${mensagem_senha_incorreta}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2024-02-07T17:35:40.272830" elapsed="0.001001"/>
+</kw>
+<status status="PASS" start="2024-02-07T17:35:40.272830" elapsed="0.001001"/>
+</branch>
+<status status="PASS" start="2024-02-07T17:35:40.272830" elapsed="0.001001"/>
+</if>
+<status status="PASS" start="2024-02-07T17:35:39.607680" elapsed="0.666151"/>
+</kw>
+<tag>FLUXO-NEGATIVO</tag>
+<tag>REQ002</tag>
+<status status="PASS" start="2024-02-07T17:35:37.949300" elapsed="2.324531"/>
+</test>
+<doc>IQS - Automação FrontEnd (WEB)
+
+Exemplo de automação com Robot Framework e Selenium.</doc>
+<status status="PASS" start="2024-02-07T17:35:37.824272" elapsed="2.450559"/>
+</suite>
+<status status="PASS" start="2024-02-07T17:35:37.809268" elapsed="2.466563"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0" skip="0">FLUXO-NEGATIVO</stat>
+<stat pass="1" fail="0" skip="0">REQ002</stat>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Selenium">Selenium</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1" name="Saucedemo">Selenium.Saucedemo</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
